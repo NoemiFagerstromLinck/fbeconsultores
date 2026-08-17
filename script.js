@@ -41,7 +41,7 @@ const chips = document.querySelectorAll('.chip');
 const chipInfo = document.getElementById('chipInfo');
 const chipTitle = document.getElementById('chipTitle');
 const chipDesc = document.getElementById('chipDesc');
-if (chips.length) {
+if (chips.length && chipInfo) {
   chips.forEach(chip => {
     chip.addEventListener('click', () => {
       const isActive = chip.classList.contains('active');
@@ -53,6 +53,9 @@ if (chips.length) {
         chipTitle.textContent = chip.textContent;
         chipDesc.textContent = chip.dataset.desc;
         chipInfo.classList.add('show');
+        const navH = (document.getElementById('nav')?.offsetHeight || 64) + 12;
+        const top = chipInfo.getBoundingClientRect().top + window.scrollY - navH;
+        window.scrollTo({ top, behavior: 'smooth' });
       }
     });
   });
