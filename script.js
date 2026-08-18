@@ -36,6 +36,50 @@ const cio = new IntersectionObserver((entries) => {
 }, { threshold: 0.6 });
 document.querySelectorAll('[data-count]').forEach(el => cio.observe(el));
 
+// Companies carousel
+const companiesCarousel = document.getElementById('companiesCarousel');
+const carouselTrack = document.getElementById('carouselTrack');
+if (companiesCarousel && carouselTrack) {
+  const cards = carouselTrack.querySelectorAll('.company-card');
+  cards.forEach(c => {
+    const clone = c.cloneNode(true);
+    clone.setAttribute('aria-hidden', 'true');
+    carouselTrack.appendChild(clone);
+  });
+  const allCards = carouselTrack.querySelectorAll('.company-card');
+  let pos = 0;
+  let cardW = 280;
+  const measure = () => { cardW = (allCards[0]?.offsetWidth || 280) + 24; };
+  measure();
+  window.addEventListener('resize', measure);
+  const speed = 0.6;
+  let raf = null;
+  const step = () => {
+    pos -= speed;
+    const half = cardW * (allCards.length / 2);
+    if (pos <= -half) pos += half;
+    carouselTrack.style.transform = `translateX(${pos}px)`;
+    raf = requestAnimationFrame(step);
+  };
+  const start = () => { if (!raf) raf = requestAnimationFrame(step); };
+  const stop = () => { if (raf) { cancelAnimationFrame(raf); raf = null; } };
+  const jump = (dir) => {
+    stop();
+    pos += dir * cardW;
+    carouselTrack.style.transform = `translateX(${pos}px)`;
+    start();
+  };
+  start();
+  companiesCarousel.addEventListener('mouseenter', stop);
+  companiesCarousel.addEventListener('mouseleave', start);
+  companiesCarousel.addEventListener('touchstart', stop, { passive: true });
+  companiesCarousel.addEventListener('touchend', start, { passive: true });
+  const prevBtn = document.getElementById('carouselPrev');
+  const nextBtn = document.getElementById('carouselNext');
+  if (prevBtn) prevBtn.addEventListener('click', () => jump(1));
+  if (nextBtn) nextBtn.addEventListener('click', () => jump(-1));
+}
+
 // Chips: click to reveal description
 const chips = document.querySelectorAll('.chip');
 const chipInfo = document.getElementById('chipInfo');
