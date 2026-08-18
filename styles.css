@@ -160,6 +160,18 @@ nav.scrolled .hamburger span { background: var(--deep); }
 /* Blog */
 .read-more { display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; font-size: 14px; font-weight: 600; color: var(--accent); text-decoration: none; }
 .read-more:hover { color: var(--navy); }
+
+/* Article pages */
+.article-back { display: inline-flex; align-items: center; gap: 6px; margin: 0 0 40px; font-size: 14px; font-weight: 600; color: var(--accent); text-decoration: none; }
+.article-back:hover { color: var(--navy); }
+.article-prose { max-width: 760px; margin: 0 auto; }
+.article-prose p { line-height: 1.75; color: #2e3a45; margin: 0 0 18px; }
+.article-prose h2 { font-size: 24px; margin: 38px 0 14px; }
+.article-prose h3 { font-size: 19px; margin: 30px 0 10px; }
+.article-prose ul { margin: 0 0 18px; padding-left: 22px; color: #2e3a45; line-height: 1.7; }
+.article-prose li { margin-bottom: 8px; }
+.article-prose .highlight { background: var(--light); border-left: 3px solid var(--accent); border-radius: 0 6px 6px 0; padding: 26px 30px; margin: 28px 0; }
+.article-prose .highlight p { margin: 0; }
 .chips-wrap { display: flex; flex-direction: column; gap: 0; }
 .chips { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
 .chip { font-size: 14px; font-weight: 400; color: var(--navy); background: #fff; border: 1px solid var(--line); padding: 12px 24px; border-radius: 999px; cursor: pointer; transition: all .25s; font-family: var(--sans); letter-spacing: .01em; }
