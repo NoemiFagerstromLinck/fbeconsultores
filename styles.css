@@ -273,8 +273,6 @@ footer .meta { color: var(--muted); font-size: 13.5px; }
   }
   .chip-info.show {
     display: block !important;
-    position: sticky;
-    top: 70px;
     z-index: 20;
   }
   .chip-info .title { font-size: 17px; }

@@ -97,9 +97,6 @@ if (chips.length && chipInfo) {
         chipTitle.textContent = chip.textContent;
         chipDesc.textContent = chip.dataset.desc;
         chipInfo.classList.add('show');
-        const navH = (document.getElementById('nav')?.offsetHeight || 64) + 12;
-        const top = chipInfo.getBoundingClientRect().top + window.scrollY - navH;
-        window.scrollTo({ top, behavior: 'smooth' });
       }
     });
   });
